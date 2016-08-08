@@ -1,0 +1,28 @@
+.all{
+  margin-top: 50px;
+  width: 100%;
+}
+  .random{
+    display: inline;
+  }
+
+  .float-left{
+    float: left;
+    /*margin-left: 45px;*/
+  }
+  .float-right{
+    float: right;
+    /*margin-right: 45px;*/
+  }
+  div.results{
+    margin-top: 20px;
+  }
+  ul li.result{
+    list-style-type: none;
+  }
+  .title{
+    margin: 0;
+  }
+  p.extract{
+    text-align: left;
+  }
