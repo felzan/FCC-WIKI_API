@@ -19,10 +19,23 @@
   }
   ul li.result{
     list-style-type: none;
+    padding-left: 5px;
+  }
+  ul li.result:hover{
+    box-shadow: -4px 0 0 0 #000000;
   }
   .title{
     margin: 0;
   }
   p.extract{
     text-align: left;
+  }
+  a.result{
+    text-decoration: none;
+    color: black;
+    margin: 10px 0;
+  }
+  a.result:hover{
+    text-decoration: none;
+    color: black;
   }

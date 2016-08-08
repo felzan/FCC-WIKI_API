@@ -18,7 +18,7 @@
           <h4 class="random"><a href="https://pt.wikipedia.org/wiki/Special:Random">Rndm</a></h4>
           <br>
           <!-- Busca -->
-          <input type="text" name="search" class="search" placeholder="Search"></select>
+          <input type="text"class="search" placeholder="Search"></select>
           <!-- <br> -->
           <button class="btn btn-default vai">Vai!</button>
         </div>
@@ -27,22 +27,8 @@
 
       <div class="row results">
         <div class="col-md-6 col-md-offset-3">
-          <ul>
-            <li class="result">
-              <h4 class="title float-left">Orlando, Florida</h4>
-              </br>
-              <p class="extract">Orlando (\u0254\u02d0r\u02c8l\u00e6ndo\u028a) is a city in the U.S. state of Florida, and the county seat of Orange County.</p>
-            </li>
-            <li class="result">
-              <h4 class="title float-left">Orlando, Florida</h4>
-              </br>
-              <p class="extract">Orlando (/\u0254\u02d0r\u02c8l\u00e6ndo\u028a/) is a city in the U.S. state of Florida, and the county seat of Orange County.</p>
-            </li>
-            <li class="result">
-              <h4 class="title float-left">Orlando, Florida</h4>
-              </br>
-              <p class="extract">Orlando (/\u0254\u02d0r\u02c8l\u00e6ndo\u028a/) is a city in the U.S. state of Florida, and the county seat of Orange County.</p>
-            </li>
+          <ul class="result-list">
+            <!-- RESULTADOS APARECEM PELA BUSCA -->
         </ul>
       </div>
     </div>
@@ -57,12 +43,17 @@
 // https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=%27orlando%27
   $(document).ready();
   $(".vai").on("click", function(){
+    $(".result-list").empty();
     var search = $(".search").val();
     $.getJSON("https://en.wikipedia.org/w/api.php?format=json&callback&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=" + search + "&callback=?", function(data){
       for(var key in data.query.pages){
-        if(data.query.pages.hasOwnProperty(key)){
-          console.log(key + "->" +data.query.pages[key]["title"]);
-        }
+        // if(data.query.pages.hasOwnProperty(key)){
+          var title = data.query.pages[key]["title"];
+          var extract = data.query.pages[key]["extract"];
+          var pageid = data.query.pages[key]["pageid"];
+          $(".result-list").append("<li class=\"result\"><a class=\"result\" href=\"https://en.wikipedia.org/?curid=" + pageid + "\"><h4 class=\"title float-left\">" + title + "</h4></br><p class=\"extract\">" + extract + "</p></a></li>");
+          // $(".result-list").html("<li class=\"result\"><h4 class=\"title float-left\">" + title + "</h4></br><p class=\"extract\">" + extract + "</p></li>");
+        // }
       }
 
     },"jsonp");
